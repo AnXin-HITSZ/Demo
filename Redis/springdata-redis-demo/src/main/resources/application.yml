@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: springdata-redis-demo
+  data:
+    redis:
+      host: 8.135.60.136
+      port: 6379
+      password: AnXin517985!
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: 5000ms
