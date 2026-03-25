@@ -3593,3 +3593,5 @@
 2026/03/25 11:41:49 [error] 3324#7940: *74 CreateFile() "D:\Demo\Redis\nginx-1.18.0/html/hmdp/.well-known/appspecific/com.chrome.devtools.json" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: localhost, request: "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1", host: "localhost:8080"
 2026/03/25 11:41:49 [error] 3324#7940: *74 CreateFile() "D:\Demo\Redis\nginx-1.18.0/html/hmdp/js/axios.min.map" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /js/axios.min.map HTTP/1.1", host: "localhost:8080"
 2026/03/25 13:32:52 [notice] 41180#37948: signal process started
+2026/03/25 15:15:17 [alert] 36584#28280: worker process 27052 exited with code C0000142
+2026/03/25 15:15:17 [alert] 36584#28280: could not respawn worker
