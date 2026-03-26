@@ -19,7 +19,27 @@ import org.springframework.context.annotation.Configuration;
 public class RedissonConfig {
 
     @Bean
-    public RedissonClient redissonClient() {
+    public RedissonClient redissonClient1() {
+        // 配置类
+        Config config = new Config();
+        // 添加 Redis 地址，这里添加了单点的地址，也可以使用 config.useClusterServers() 添加集群地址
+        config.useSingleServer().setAddress("redis://8.135.60.136:6379").setPassword("AnXin517985!");
+        // 创建客户端
+        return Redisson.create(config);
+    }
+
+    @Bean
+    public RedissonClient redissonClient2() {
+        // 配置类
+        Config config = new Config();
+        // 添加 Redis 地址，这里添加了单点的地址，也可以使用 config.useClusterServers() 添加集群地址
+        config.useSingleServer().setAddress("redis://8.135.60.136:6379").setPassword("AnXin517985!");
+        // 创建客户端
+        return Redisson.create(config);
+    }
+
+    @Bean
+    public RedissonClient redissonClient3() {
         // 配置类
         Config config = new Config();
         // 添加 Redis 地址，这里添加了单点的地址，也可以使用 config.useClusterServers() 添加集群地址
