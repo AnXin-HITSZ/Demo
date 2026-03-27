@@ -80,7 +80,6 @@ public class CacheClient {
             return null;
         }
         // 2.2.2 存在，写入 Redis
-        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(r), CACHE_SHOP_TTL, TimeUnit.MINUTES);
         // 3. 返回
         this.set(key, r, time, unit);
 
