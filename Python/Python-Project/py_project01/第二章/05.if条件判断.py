@@ -63,14 +63,40 @@
 
 
 # 案例：根据输入的用户名和密码进行系统登录 - admin/666888、root/123456、me/987654
-username = input("请输入用户名：")
-password = input("请输入密码：")
+# username = input("请输入用户名：")
+# password = input("请输入密码：")
+#
+# if username == "admin" and password == "666888":
+#     print("登录成功")
+# elif username == "root" and password == "123456":
+#     print("登录成功")
+# elif username == "me" and password == "987654":
+#     print("登录成功")
+# else:
+#     print("登录失败，用户名或密码错误！")
 
-if username == "admin" and password == "666888":
-    print("登录成功")
-elif username == "root" and password == "123456":
-    print("登录成功")
-elif username == "me" and password == "987654":
-    print("登录成功")
+
+"""
+案例 - 三角形类型判断：根据输入的三条边的边长（正整数），判定是等边三角形、等腰三角形、普通三角形，还是不能构成三角形。
+  1. 构成三角形的条件：两边之和大于第三边
+  2. 三角形判定规则：
+      三条边都相等：等边三角形
+      两条边相等：等腰三角形
+      三条边都不相等：普通三角形
+"""
+# 1. 接收输入的三角形三条边的边长
+a = int(input("请输入第一条边的边长："))
+b = int(input("请输入第二条边的边长："))
+c = int(input("请输入第三条边的边长："))
+
+# 2. 判断三角形的类型
+if a + b > c and a + c > b and b + c > a:   # 条件成立，构成三角形
+    # pass    # pass 是一个空语句，起到语法占位的作用
+    if a == b and b == c:
+        print(f"{a}、{b}、{c} 这三个边长构成等边三角形")
+    elif a == b or b == c or a == c:
+        print(f"{a}、{b}、{c} 这三个边长构成等腰三角形")
+    else:
+        print(f"{a}、{b}、{c} 这三个边长构成普通三角形")
 else:
-    print("登录失败，用户名或密码错误！")
+    print(f"{a}、{b}、{c} 这三个边长不能构成三角形！")
