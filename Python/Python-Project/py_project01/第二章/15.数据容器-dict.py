@@ -93,15 +93,15 @@ while True:
 
         case "2":  # 修改购物车
             goods_name = input("请输入要修改的商品名称：")
-            goods_price = float(input("请输入商品的最新价格："))
-            goods_num = int(input("请输入商品的最新数量："))
-
             # 如果商品不存在，则提示错误信息，重新选择
             if goods_name not in shopping_cart:
                 print("该商品不存在，请重新选择！")
-            else:
-                shopping_cart[goods_name] = {"price": goods_price, "num": goods_num}
-                print("商品修改完毕！")
+                continue
+
+            goods_price = float(input("请输入商品的最新价格："))
+            goods_num = int(input("请输入商品的最新数量："))
+            shopping_cart[goods_name] = {"price": goods_price, "num": goods_num}
+            print("商品修改完毕！")
 
         case "3":  # 删除购物车
             goods_name = input("请输入要删除的商品名称：")
@@ -118,7 +118,7 @@ while True:
                 goods_info = shopping_cart[goods_name]
                 print(f"商品名称：{goods_name}，商品价格：{goods_info['price']}，商品数量：{goods_info['num']}")
         case "5":  # 退出购物车
-            print("Bye~")
+            print("Bye ~")
             break
         case _:  # 匹配其他所有情况
             print("非法操作！")
