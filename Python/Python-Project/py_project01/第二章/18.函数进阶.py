@@ -126,23 +126,97 @@
 
 
 # ---------------------------- 匿名函数 ----------------------------
-# 需求 1：打印一条分割线
-# def out_line():
-#     print("-----------------------------")
+# # 需求 1：打印一条分割线
+# # def out_line():
+# #     print("-----------------------------")
+#
+# out_line = lambda : print("-----------------------------")
+# out_line()
+#
+# # 需求 2：计算两个数之和
+# # def add(x, y):
+# #     return x + y
+#
+# add = lambda x, y: x + y
+# print(add(100, 200))
+#
+# # 需求 3：完成如下列表的排序操作，按照每一个元素的字符个数，从小到大排序
+# data_list = ["C++", "C", "Python", "PHP", "Java", "Go", "JavaScript", "Rust"]
+# print(data_list)
+#
+# data_list.sort(key=lambda item: len(item))  # 匿名函数典型的应用场景
+# print(data_list)
 
-out_line = lambda : print("-----------------------------")
-out_line()
 
-# 需求 2：计算两个数之和
-# def add(x, y):
-#     return x + y
+# ---------------------------- 案例 ----------------------------
+# 案例 1：计算 n 的阶乘
+# # 递归调用（先层层递进，再逐层回归）：指的是在函数中自己调用自己的情况 -> 一定得有终结点
+# """
+# function(10) = 10 * function(9) = ...
+# function(9) = 9 * function(8) = ...
+# function(8) = 8 * function(7) = ...
+# function(7) = 7 * function(6) = 7 * 720 = 5040
+# function(6) = 6 * function(5) = 6 * 120 = 720
+# function(5) = 5 * function(4) = 5 * 24 = 120
+# function(4) = 4 * function(3) = 4 * 6 = 24
+# function(3) = 3 * function(2) = 3 * 2 = 6
+# function(2) = 2 * function(1) = 2 * 1 = 2
+# function(1) = 1
+# """
+#
+# def function(n):
+#     if n == 1:
+#         return 1
+#     else:
+#         return n * function(n - 1)
+#
+# result = function(10)
+# print(result)
 
-add = lambda x, y: x + y
-print(add(100, 200))
 
-# 需求 3：完成如下列表的排序操作，按照每一个元素的字符个数，从小到大排序
-data_list = ["C++", "C", "Python", "PHP", "Java", "Go", "JavaScript", "Rust"]
-print(data_list)
+"""
+案例 2：
+    定义一个用于根据传入的一批商品信息（商品名、价格、数量）、优惠（优惠券、积分抵扣）、运费信息计算订单的总金额的函数
+    具体规则如下：
+        1. 优惠券需要商品金额满 5000 才可以使用，且优惠券金额不能超过商品总价
+        2. 积分抵扣需要商品总金额满 5000 才可以使用，100 积分抵扣 1 元（且抵扣金额不能超过商品总价，积分只能整百抵扣）
+"""
+def calc_order_cost(*args, coupon=0, score=0, express=0.0):
+    """
+    根据传入的一批商品信息（商品名、价格、数量）、优惠（优惠券、积分抵扣）、运费信息计算订单的总金额
+    :param args: 商品信息（商品名、价格、数量）
+    :param coupon: 优惠券
+    :param score: 积分
+    :param express: 运费
+    :return: 订单的总金额
+    """
+    # 订单的总金额 = 商品总金额 - 优惠券 - 积分抵扣 + 运费
+    # 1. 计算商品总金额
+    total_price = [goods[1] * goods[2] for goods in args]
+    total_cost = sum(total_price)
 
-data_list.sort(key=lambda item: len(item))  # 匿名函数典型的应用场景
-print(data_list)
+    # 2. 扣减优惠券
+    if total_cost >= 5000 and coupon <= total_cost:
+        total_cost -= coupon
+
+    # 3. 扣减积分抵扣
+    if total_cost >= 5000 and score // 100 <= total_cost:
+        total_cost -= score // 100
+
+    # 4. 添加运费
+    total_cost += express
+
+    return total_cost
+
+# 测试
+# total = calc_order_cost(("good_1", 188, 2), ("goods_2", 388, 1), ("goods_3", 3999, 1), coupon=10, score=4000, express=9.9)
+# print(total)
+
+# total = calc_order_cost(("good_1", 188, 2), ("goods_2", 388, 1), ("goods_3", 6999, 1), coupon=10, score=4000, express=9.9)
+# print(total)
+
+# total = calc_order_cost(("good_1", 188, 2), ("goods_2", 388, 1), ("goods_3", 6999, 1), express=9.9)
+# print(total)
+
+total = calc_order_cost(("good_1", 188, 2), ("goods_2", 388, 1), ("goods_3", 6999, 1))
+print(total)
